@@ -11,6 +11,7 @@
 #include <fstream>
 #include <algorithm>
 #include <ctime>
+#include <cstring>
 
 int main(int argc, char** argv)
 {
@@ -20,6 +21,7 @@ int main(int argc, char** argv)
         return 1;
     }
 
+
     // Storing the input file directory, buffer files will store the remaining unextracted parts
     std::string input_file(argv[1]);
     std::string output_prefix(argv[2]);
@@ -27,6 +29,8 @@ int main(int argc, char** argv)
     bool greedy = true;
     if (argc == 4 && strcmp(argv[3], "-e") == 0)
         greedy = false;
+
+    Logger::GetLogger(argv[3]);
 
     clock_t start = clock();
     bool finished_extracting = false;
@@ -88,6 +92,8 @@ int main(int argc, char** argv)
         // For next iteration, we will use the buffer output of this iteration as input
         input_file = buffer_file;
     }
+
+    std::cout << "Used Time: " << (double)(clock() - start) / CLOCKS_PER_SEC << "\n";
     return 0;
 }
 

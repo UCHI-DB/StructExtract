@@ -11,7 +11,9 @@ private:
     std::ofstream f_;
     static Logger* self;
     Logger();
+    Logger(char*);
 public:
+    static Logger& GetLogger(char*);
     static Logger& GetLogger();
     template <typename T>
     friend Logger& operator<<(Logger& l, const T& val);

@@ -3,6 +3,12 @@
 
 Logger* Logger::self = nullptr;
 
+Logger& Logger::GetLogger(char* filename) {
+    if (self == nullptr)
+        self = new Logger(filename);
+    return *self;
+}
+
 Logger& Logger::GetLogger() {
     if (self == nullptr)
         self = new Logger();
@@ -11,6 +17,9 @@ Logger& Logger::GetLogger() {
 
 Logger::Logger() :
   f_("log.txt") {}
+
+Logger::Logger(char* filename):
+    f_(filename) {}
 
 std::string ToString(const Schema* schema) {
     if (schema == nullptr)
