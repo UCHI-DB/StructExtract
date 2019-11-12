@@ -61,7 +61,7 @@ int main(int argc, char** argv)
         std::cout << "Extracting Records\n";
         // Extract
         std::string output_file = (output_prefix + "_" + std::to_string(++iteration) + ".tsv");
-        std::string buffer_file = (buffer_prefix + "_" + std::to_string(iteration) + ".txt");
+        std::string buffer_file = (output_prefix + "_" + std::to_string(iteration) + ".cmbuffer");
         std::unique_ptr<Extraction> extract(Extraction::GetExtractionInstanceFromFile(input_file, schema.get()));
         StructureOutput struct_output(output_file, buffer_file);
         if (file_size == -1)
